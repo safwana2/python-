@@ -6,9 +6,9 @@ on:
       - main
     
 
-concurrenry:
-  grouo:production
-  cancel-in-progress:true
+concurrency:
+  grouo: prod
+  cancel-in-progress: true
 
 jobs:
   build:
