@@ -1,28 +1,12 @@
-name: Python CI
+name:
 
 on:
   push:
     branches:
-      - main
-    
-
-concurrency:
-  grouo: prod
-  cancel-in-progress: true
-
-strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+     - main
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-    steps:
-     
-      - name: install nginx
-        run: sudo apt install nginx 
+  runs -on: ubuntu-latest
 
-      - name: start the nginx
-        run: sudo systemctl start nginx
-
-      
+  - name: update my pc
+    run: apt updaate
