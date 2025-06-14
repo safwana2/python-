@@ -8,5 +8,8 @@ on:
 jobs:
   runs -on: ubuntu-latest
 
-  - name: update my pc
-    run: apt updaate
+  steps:  
+    - name: update my pc
+      run: apt updaate
+  
+    
