@@ -1,15 +1,19 @@
-name:
-
 on:
-  push:
-    branches:
-     - main
+   push:
+     branches:
+       - main
+   pull_request:
+     branches:
+       - main
 
-jobs:
-  runs -on: ubuntu-latest
 
-  steps:  
-    - name: update my pc
-      run: apt updaate
-  
-    
+ jobs:
+   build:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout into the repository
+         uses: actions/checkout@v4
+       - name: Install dependencies
+         run: npm install
+       - name: Run tests
+         run: npm test
