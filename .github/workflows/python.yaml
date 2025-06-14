@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+    
 
 concurrenry:
   grouo:production
@@ -26,4 +27,4 @@ jobs:
       - name: start the nginx
         run: sudo systemctl start nginx
 
-      
+      #gfhfg
