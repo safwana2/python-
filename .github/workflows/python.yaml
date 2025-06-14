@@ -10,13 +10,13 @@ concurrency:
   grouo: prod
   cancel-in-progress: true
 
+strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    
     steps:
       - name: update my machine :
         run: sudo apt update
@@ -27,4 +27,4 @@ jobs:
       - name: start the nginx
         run: sudo systemctl start nginx
 
-      #gfhfg
+      
