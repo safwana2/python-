@@ -1,7 +1,15 @@
 name: ASCII Workflow
 
 on:
-  - push
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: bur
+  cancel-in-progress: true
+  
+
 
 jobs: 
     first_job: 
