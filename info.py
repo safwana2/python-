@@ -1,6 +1,6 @@
 MENU = {
         "Tea": {
-            "ingradient": {
+            "ingredient": {
                 "water":300,
                 "sugar":200,
                 "milk":500,
@@ -8,7 +8,7 @@ MENU = {
             "cost":7
         },
         "fufu": {
-            "ingradient": {
+            "ingredient": {
                 "water":300,
                 "sugar":200,
                 "milk":500,
@@ -16,7 +16,7 @@ MENU = {
             "cost":6
         },
         "gari": {
-            "ingradient": {
+            "ingredient": {
                 "water":300,
                 "sugar":200,
                 "milk":500,
@@ -29,67 +29,71 @@ MENU = {
 items_use = {
     "gari":3000,
     "sugar":2000,
-    "mailk":3000,
+    "milk":3000,
     "water":1000,
     
 }
 
 
-def checking_the_amount(moneys):
-    profit = 0
-    cost = MENU[choice]["cost"];
-    if moneys >= cost:
-       change = moneys - cost
-       print(f"your change is cedis {change } " )
-       profit+=cost
-       
-   
-
-       return True
+def checking_the_amount(money, choice):
+    cost = MENU[choice]["cost"]
+    if money >= cost:
+        change = money - cost
+        print(f"Your change is cedis {change}")
+        return True
     return False
     
     
-def make_coffea(res,ing):
-    for items in ingradienst:
-         resource[items] - ingradienst[items]
-         
-    print("enjoy your coffeae")
+def make_drink(resource, ingredients):
+    for item in ingredients:
+        resource[item] -= ingredients[item]
+    print("Enjoy your drink!")
 
 #create a funtion to check weather the ingradiants are wnoutj to produce
 
-def is_items_enough_to_produce(ingradient): 
-     for items in ingradienst:
-        if ingradienst[items] > resource.get(items, 0):
-           print("sorry there is no enough resources")
-           return False
-
-        else:
+def is_items_enough_to_produce(ingredients, resource):
+    for item in ingredients:
+        if ingredients[item] > resource.get(item, 0):
+            print(f"Sorry, there is not enough {item}")
             return False
+    return True
    
     
 
-is_true = True
+def main():
+    resource = items_use.copy()
+    while True:
+        try:
+            print("\nAvailable items:")
+            for item in MENU:
+                print(f"- {item}: {MENU[item]['cost']} cedis")
+            
+            choice = input("\nWhat do you want to buy? ").strip()
+            if choice not in MENU:
+                print("Invalid choice. Please select from the menu.")
+                continue
 
+            ingredients = MENU[choice]["ingredient"]
+            if not is_items_enough_to_produce(ingredients, resource):
+                continue
 
-resource = items_use
-while is_true :
-    choice = input("what do you want to buy ")
-    ingradienst = MENU[choice]["ingradient"]
-   
+            try:
+                money = int(input("Insert your money: "))
+                if checking_the_amount(money, choice):
+                    make_drink(resource, ingredients)
+            except ValueError:
+                print("Please enter a valid amount.")
+                continue
 
-    if choice == "Tea" or "gari" or "fufu":
-        is_items_enough_to_produce(ingradienst)
-        money = int(input("insert in your money "))
-        if  checking_the_amount(money):
-            make_coffea(resource,ingradienst)
-    
-        else:
-            print("sorry your money is not enough to get you are a tea thank you")
-        # check weather the item are ok to be us
-    
-        
+        except KeyboardInterrupt:
+            print("\nThank you for using our service!")
+            break
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            break
 
-       
+if __name__ == "__main__":
+    main()
     
 
     
