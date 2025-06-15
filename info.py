@@ -24,7 +24,7 @@ MENU = {
             },   
             "cost":5
         }
-}
+
 
 items_use = {
     "gari":3000,
